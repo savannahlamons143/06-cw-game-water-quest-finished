@@ -1,0 +1,449 @@
+/* charity: water brand colors */
+:root {
+  --yellow: #FFC907;
+  --yellow-hover: #EAB900;
+  --blue: #2E9DF7;
+  --blue-hover: #1685DD;
+  --light-blue: #8BD1CB;
+  --green: #4FCB53;
+  --text: #263238;
+  --text-muted: #546E7A;
+  --card-background: #FFFFFF;
+  --page-background: #F4F8F8;
+  --border-color: #D5E7EF;
+  --grid-cell-bg: #E8F3F8;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 24px 16px 40px;
+  background-color: var(--page-background);
+  color: var(--text);
+  font-family: Avenir, "Avenir Next", "Proxima Nova", Arial, sans-serif;
+  line-height: 1.5;
+}
+
+.container {
+  width: 100%;
+  max-width: 750px;
+  margin: 16px auto 28px;
+  padding: 36px 32px;
+  background-color: var(--card-background);
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(25, 55, 70, 0.1);
+}
+
+.charity-water-logo {
+  display: block;
+  width: min(220px, 80%);
+  max-height: 60px;
+  height: auto;
+  object-fit: contain;
+  margin: 0 auto 16px;
+}
+
+h1 {
+  margin: 0 0 10px;
+  color: #1A1A1A;
+  font-size: 32px;
+  font-weight: 800;
+  text-align: center;
+}
+
+.game-instructions {
+  margin: 0 auto 24px;
+  max-width: 600px;
+  color: var(--text-muted);
+  font-size: 16px;
+  text-align: center;
+}
+
+/* Difficulty controls */
+.difficulty-controls {
+  margin: 0 auto 20px;
+  max-width: 500px;
+  padding: 16px 20px;
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  background-color: #FAFDFF;
+}
+
+.difficulty-controls legend {
+  padding: 0 8px;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.difficulty-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.difficulty-option {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  background-color: #FFFFFF;
+  border: 2px solid var(--border-color);
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.difficulty-option:hover {
+  border-color: var(--blue);
+  background-color: #F0F8FD;
+}
+
+.difficulty-option:has(input:checked) {
+  border-color: var(--blue);
+  background-color: #EAF6FC;
+  color: #0F5C8E;
+  box-shadow: 0 2px 6px rgba(46, 157, 247, 0.2);
+}
+
+.difficulty-option input[type="radio"] {
+  accent-color: var(--blue);
+  cursor: pointer;
+}
+
+.difficulty-info {
+  margin: 8px 0 0;
+  font-size: 14px;
+  color: #0F5C8E;
+  text-align: center;
+  font-weight: 600;
+}
+
+/* Sound control */
+.sound-control-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+#sound-toggle {
+  padding: 6px 14px;
+  font-size: 13px;
+  font-weight: 600;
+  background-color: #F0F4F7;
+  color: var(--text);
+  border: 1px solid var(--border-color);
+  border-radius: 20px;
+}
+
+#sound-toggle:hover {
+  background-color: #E2EBF0;
+  transform: none;
+}
+
+/* Stats */
+.stats {
+  display: flex;
+  justify-content: space-around;
+  gap: 16px;
+  margin-bottom: 16px;
+  padding: 14px 20px;
+  background-color: #EAF6FC;
+  border-radius: 10px;
+}
+
+.stats p {
+  margin: 0;
+  color: var(--text);
+  font-size: 17px;
+  font-weight: 700;
+  text-align: center;
+}
+
+#current-cans,
+#goal-cans,
+#timer {
+  color: #126EAA;
+  font-weight: 800;
+}
+
+.achievement {
+  min-height: 28px;
+  margin: 8px 0 16px;
+  padding: 4px 8px;
+  color: #126EAA;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.5;
+  text-align: center;
+}
+
+/* 3x3 Game grid */
+.game-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  width: 100%;
+  max-width: 460px;
+  margin: 16px auto;
+}
+
+.grid-cell {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 1;
+  overflow: hidden;
+  background-color: var(--grid-cell-bg);
+  border: 2px solid var(--border-color);
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background-color 0.15s, transform 0.15s;
+  user-select: none;
+}
+
+.grid-cell:hover {
+  background-color: #DDF0F8;
+}
+
+.grid-cell:active {
+  transform: scale(0.96);
+}
+
+.grid-cell:focus-visible {
+  outline: 3px solid var(--blue);
+  outline-offset: 3px;
+}
+
+/* Centers the can inside its tile */
+.water-can-wrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: min(72px, 70%);
+  height: min(72px, 70%);
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.water-can {
+  width: 100%;
+  height: 100%;
+  background-image: url("img/water-can.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  cursor: pointer;
+  animation: popUp 0.3s ease-out;
+}
+
+@keyframes popUp {
+  from {
+    opacity: 0;
+    transform: scale(0.4);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Game controls */
+.game-controls {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+button {
+  padding: 12px 28px;
+  border: 0;
+  border-radius: 8px;
+  background-color: var(--yellow);
+  color: #1A1A1A;
+  font: inherit;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.2s;
+}
+
+button:hover {
+  background-color: var(--yellow-hover);
+  transform: translateY(-1px);
+}
+
+button:focus-visible {
+  outline: 3px solid var(--blue);
+  outline-offset: 3px;
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.65;
+  transform: none;
+}
+
+#reset-game {
+  background-color: var(--blue);
+  color: #FFFFFF;
+}
+
+#reset-game:hover {
+  background-color: var(--blue-hover);
+}
+
+#reset-game[hidden] {
+  display: none;
+}
+
+/* Confetti celebration */
+#confetti {
+  position: fixed;
+  z-index: 100;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.confetti {
+  position: absolute;
+  top: -16px;
+  width: 10px;
+  height: 14px;
+  animation: confettiFall 2.6s ease-in forwards;
+}
+
+@keyframes confettiFall {
+  to {
+    transform: translateY(105vh) rotate(720deg);
+    opacity: 0.2;
+  }
+}
+
+/* Footer with charity: water links */
+.game-footer {
+  width: 100%;
+  max-width: 750px;
+  margin: 0 auto;
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 14px;
+}
+
+.game-footer p {
+  margin: 0 0 12px;
+}
+
+.footer-links {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px;
+}
+
+.footer-links a {
+  color: var(--blue);
+  text-decoration: none;
+  font-weight: 700;
+  transition: color 0.2s;
+}
+
+.footer-links a:hover {
+  color: var(--blue-hover);
+  text-decoration: underline;
+}
+
+.footer-links .donate-btn {
+  display: inline-block;
+  padding: 8px 18px;
+  background-color: var(--yellow);
+  color: #1A1A1A;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 700;
+  transition: background-color 0.2s;
+}
+
+.footer-links .donate-btn:hover {
+  background-color: var(--yellow-hover);
+  text-decoration: none;
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 540px) {
+  body {
+    padding: 12px 10px 24px;
+  }
+
+  .container {
+    margin: 8px auto 20px;
+    padding: 22px 16px;
+  }
+
+  h1 {
+    font-size: 26px;
+  }
+
+  .game-instructions {
+    font-size: 14px;
+    margin-bottom: 18px;
+  }
+
+  .difficulty-buttons {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .difficulty-option {
+    justify-content: center;
+  }
+
+  .stats {
+    gap: 8px;
+    padding: 12px 8px;
+  }
+
+  .stats p {
+    font-size: 14px;
+  }
+
+  .game-grid {
+    gap: 8px;
+    max-width: 320px;
+  }
+
+  .grid-cell {
+    border-radius: 9px;
+  }
+
+  button {
+    padding: 10px 18px;
+    font-size: 15px;
+  }
+}
+
+/* Respect user's motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

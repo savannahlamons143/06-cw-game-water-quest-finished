@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Water Quest</title>
+  <meta name="description" content="An interactive charity: water game where players tap yellow jerry cans to collect clean water points before time runs out.">
+  <meta property="og:title" content="Water Quest">
+  <meta property="og:description" content="An interactive charity: water game where players tap yellow jerry cans to collect clean water points before time runs out.">
+  <link rel="icon" type="image/png" href="img/cw_logo.png">
+  <link href="style.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+  <main class="container">
+    <img
+      class="charity-water-logo"
+      src="img/cw_logo_horizontal.png"
+      alt="charity: water">
+
+    <h1>Water Quest</h1>
+
+    <p class="game-instructions">
+      Select a difficulty, click <strong>Start Game</strong>, then tap the yellow jerry can each time it appears.
+      Collect enough cans to reach the goal before the timer reaches zero! Missing a can or tapping an empty tile costs 1 point.
+    </p>
+
+    <fieldset class="difficulty-controls" aria-label="Game difficulty selection">
+      <legend>Select Difficulty</legend>
+      <div class="difficulty-buttons" role="radiogroup" aria-label="Difficulty level">
+        <label class="difficulty-option">
+          <input type="radio" name="difficulty" value="easy">
+          <span>Easy</span>
+        </label>
+        <label class="difficulty-option">
+          <input type="radio" name="difficulty" value="normal" checked>
+          <span>Normal</span>
+        </label>
+        <label class="difficulty-option">
+          <input type="radio" name="difficulty" value="hard">
+          <span>Hard</span>
+        </label>
+      </div>
+      <p id="difficulty-info" class="difficulty-info">Goal: 20 cans &bull; Time: 30s &bull; Can speed: 1.0s</p>
+    </fieldset>
+
+    <div class="sound-control-wrapper">
+      <button id="sound-toggle" type="button" aria-pressed="true" aria-label="Toggle sound effects">
+        Sound: ON
+      </button>
+    </div>
+
+    <div class="stats" aria-label="Game status">
+      <p>Cans: <span id="current-cans">0</span> / <span id="goal-cans">20</span></p>
+      <p>Time Left: <span id="timer">30</span>s</p>
+    </div>
+
+    <div
+      id="achievements"
+      class="achievement"
+      role="status"
+      aria-live="polite">
+      Press Start Game when you're ready.
+    </div>
+
+    <div
+      class="game-grid"
+      role="group"
+      aria-label="Nine-tile game grid">
+    </div>
+
+    <div class="game-controls">
+      <button id="start-game" type="button">Start Game</button>
+      <button id="reset-game" type="button" hidden>Reset</button>
+    </div>
+  </main>
+
+  <footer class="game-footer">
+    <p>Millions of people around the world live without clean water. Every drop makes a difference.</p>
+    <div class="footer-links">
+      <a href="https://www.charitywater.org" target="_blank" rel="noopener noreferrer">Visit charity: water</a>
+      <a href="https://www.charitywater.org/donate" target="_blank" rel="noopener noreferrer" class="donate-btn">Donate Clean Water</a>
+    </div>
+  </footer>
+
+  <div id="confetti" aria-hidden="true"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
